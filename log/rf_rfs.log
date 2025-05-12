@@ -1,0 +1,15 @@
+nan count: 0
+============================================================================================================
+optimal feature count: 11
+R²: -0.780553
+std: 0.264734
+configuration: {'estimator__max_features': 'sqrt'}
+recursive features:
+['gyr_cdrl3_Rg_std_300', 'rmsf_cdrs_mu_400', 'gyr_Rg_std_400', 'gyr_cdrs_Rg_std_400', 'rmsd_std_400', 'all-temp_lamda_b=25_eq=20', '400-s2_b=25_eq=20', '400-std_b=25_eq=20', '400_surface_mean_k=10_eq=20', '400_surface_mean_k=15_eq=20', '400_surface_mean_k=20_eq=20']
+duration: 0:09:18.868176
+============================================================================================================
+ranked recursive features:
+['gyr_cdrl3_Rg_std_300', 'rmsf_cdrs_mu_400', 'gyr_Rg_std_400', 'gyr_cdrs_Rg_std_400', 'rmsd_std_400', 'all-temp_lamda_b=25_eq=20', '400-s2_b=25_eq=20', '400-std_b=25_eq=20', '400_surface_mean_k=10_eq=20', '400_surface_mean_k=15_eq=20', '400_surface_mean_k=20_eq=20', 'tagg']
+============================================================================================================
+nan count: 0
+============================================================================================================
