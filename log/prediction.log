@@ -11,3 +11,160 @@ rapids starting
 ['./models/tagg/efs_best_knn.pkl', './models/tm/efs_best_randomforest.pkl', './models/tmon/efs_best_elasticnet.pkl']
 rapids starting 
 0
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (R²: -1.42)
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (Rp: nan)
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (Rs: nan)
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (R²: -1.42)
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (Rp: nan)
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (Rs: nan)
+[DEBUG] Saving plot to: plots/efs_best_knn.png
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (R²: 0.60)
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (Rp: 0.80)
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (Rs: 0.66)
+[DEBUG] Saving plot to: plots/efs_best_randomforest.png
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (R²: -1.42)
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (Rp: nan)
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (Rs: nan)
+[DEBUG] Saving plot to: plots/efs_best_knn.png
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (R²: 0.60)
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (Rp: 0.80)
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (Rs: 0.66)
+[DEBUG] Saving plot to: plots/efs_best_randomforest.png
+[DEBUG] Holdout columns:
+['name', 'rmsd_std_300', 'gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350', 'sasa_cdrl1_std_350', 'sasa_cdrl2_std_400', '300-s2_b=2.5_eq=20', 'r-lamda_b=2.5_eq=20', '300-std_b=2.5_eq=20', 'r-lamda_b=5_eq=20', 'r-lamda_b=12.5_eq=20', 'tm']
+[DEBUG] Feature set columns for model type 'efs':
+['Unnamed: 0', 'gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350', 'tm']
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (R²: -1.42)
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (Rp: nan)
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (Rs: nan)
+[DEBUG] Saving plot to: plots/efs_best_knn.png
+[DEBUG] Holdout columns:
+['name', 'rmsd_std_300', 'gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350', 'sasa_cdrl1_std_350', 'sasa_cdrl2_std_400', '300-s2_b=2.5_eq=20', 'r-lamda_b=2.5_eq=20', '300-std_b=2.5_eq=20', 'r-lamda_b=5_eq=20', 'r-lamda_b=12.5_eq=20', 'tm']
+[DEBUG] Feature set columns for model type 'efs':
+['Unnamed: 0', 'gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350', 'tm']
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (R²: 0.60)
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (Rp: 0.80)
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (Rs: 0.66)
+[DEBUG] Saving plot to: plots/efs_best_randomforest.png
+[DEBUG] Holdout columns:
+['name', 'rmsd_std_300', 'gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350', 'sasa_cdrl1_std_350', 'sasa_cdrl2_std_400', '300-s2_b=2.5_eq=20', 'r-lamda_b=2.5_eq=20', '300-std_b=2.5_eq=20', 'r-lamda_b=5_eq=20', 'r-lamda_b=12.5_eq=20', 'tm']
+[DEBUG] Feature set columns for model type 'efs':
+['Unnamed: 0', 'gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350', 'tm']
+[DEBUG] Holdout columns:
+['name', 'rmsd_std_300', 'gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350', 'sasa_cdrl1_std_350', 'sasa_cdrl2_std_400', '300-s2_b=2.5_eq=20', 'r-lamda_b=2.5_eq=20', '300-std_b=2.5_eq=20', 'r-lamda_b=5_eq=20', 'r-lamda_b=12.5_eq=20', 'tm']
+[DEBUG] Feature set columns for model type 'efs':
+['Unnamed: 0', 'gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350', 'tm']
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (R²: -1.42)
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (Rp: nan)
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (Rs: nan)
+[DEBUG] Saving plot to: plots/efs_best_knn.png
+[DEBUG] Holdout columns:
+['name', 'rmsd_std_300', 'gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350', 'sasa_cdrl1_std_350', 'sasa_cdrl2_std_400', '300-s2_b=2.5_eq=20', 'r-lamda_b=2.5_eq=20', '300-std_b=2.5_eq=20', 'r-lamda_b=5_eq=20', 'r-lamda_b=12.5_eq=20', 'tm']
+[DEBUG] Feature set columns for model type 'efs':
+['Unnamed: 0', 'gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350', 'tm']
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (R²: 0.60)
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (Rp: 0.80)
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (Rs: 0.66)
+[DEBUG] Saving plot to: plots/efs_best_randomforest.png
+[DEBUG] Holdout columns:
+['name', 'rmsd_std_300', 'gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350', 'sasa_cdrl1_std_350', 'sasa_cdrl2_std_400', '300-s2_b=2.5_eq=20', 'r-lamda_b=2.5_eq=20', '300-std_b=2.5_eq=20', 'r-lamda_b=5_eq=20', 'r-lamda_b=12.5_eq=20', 'tm']
+[DEBUG] Feature set columns for model type 'efs':
+['Unnamed: 0', 'gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350', 'tm']
+[DEBUG] Using features: ['gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350']
+[DEBUG] Using target: tm
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (R²: -1.42)
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (Rp: nan)
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (Rs: nan)
+[DEBUG] Saving plot to: plots/efs_best_knn.png
+[DEBUG] Using features: ['gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350']
+[DEBUG] Using target: tm
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (R²: 0.60)
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (Rp: 0.80)
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (Rs: 0.66)
+[DEBUG] Saving plot to: plots/efs_best_randomforest.png
+[DEBUG] Using features: ['gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350']
+[DEBUG] Using target: tm
+[DEBUG] Model expects 3 features
+[DEBUG] Using features: ['gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350']
+[DEBUG] Using target: tm
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (R²: -1.42)
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (Rp: nan)
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (Rs: nan)
+[DEBUG] Saving plot to: plots/efs_best_knn.png
+[DEBUG] Model expects 3 features
+[DEBUG] Using features: ['gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350']
+[DEBUG] Using target: tm
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (R²: 0.60)
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (Rp: 0.80)
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (Rs: 0.66)
+[DEBUG] Saving plot to: plots/efs_best_randomforest.png
+[DEBUG] Model expects 4 features
+[DEBUG] Using features: ['gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350']
+[DEBUG] Using target: tm
+[DEBUG] Model expects 3 features
+[DEBUG] Using features: ['gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350']
+[DEBUG] Using target: tm
+[DEBUG] Model expects 3 features
+[DEBUG] Using features: ['gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350']
+[DEBUG] Using target: tm
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (R²: -1.42)
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (Rp: nan)
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (Rs: nan)
+[DEBUG] Saving plot to: plots/efs_best_knn.png
+[DEBUG] Model expects 3 features
+[DEBUG] Using features: ['gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350']
+[DEBUG] Using target: tm
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (R²: 0.60)
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (Rp: 0.80)
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (Rs: 0.66)
+[DEBUG] Saving plot to: plots/efs_best_randomforest.png
+[DEBUG] Model expects 4 features
+[DEBUG] Using features: ['gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350']
+[DEBUG] Using target: tm
+[DEBUG] Model expects 3 features
+[DEBUG] Using features: ['gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350']
+[DEBUG] Using target: tm
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (R²: -1.42)
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (Rp: nan)
+KNeighborsRegressor(leaf_size=1, n_neighbors=2) (Rs: nan)
+[DEBUG] Saving plot to: plots/efs_best_knn.png
+[DEBUG] Model expects 3 features
+[DEBUG] Using features: ['gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350']
+[DEBUG] Using target: tm
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (R²: 0.60)
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (Rp: 0.80)
+RandomForestRegressor(criterion='absolute_error', max_features='sqrt',
+                      n_estimators=112) (Rs: 0.66)
+[DEBUG] Saving plot to: plots/efs_best_randomforest.png
+[DEBUG] Model expects 4 features
+[DEBUG] Using features: ['gyr_cdrs_Rg_std_350', 'bonds_contacts_std_350', 'rmsf_cdrl1_std_350']
+[DEBUG] Using target: tm
+[WARNING] Feature mismatch: Model expects 4 features, but 3 provided.
+[DEBUG] Adding target column back into features (not ideal).
+ElasticNet(alpha=1e-06, l1_ratio=0) (R²: -2664.26)
+ElasticNet(alpha=1e-06, l1_ratio=0) (Rp: 0.99)
+ElasticNet(alpha=1e-06, l1_ratio=0) (Rs: 1.00)
+[DEBUG] Saving plot to: plots/efs_best_elasticnet.png

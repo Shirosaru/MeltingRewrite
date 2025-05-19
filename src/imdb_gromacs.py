@@ -54,8 +54,9 @@ import shutil
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='gromacs wrapper for pbs array jobs submission')
     parser.add_argument('--project', type=str, required=True, help='specify project directory with subdirectories containing pdb files (AbMelt)')
-    parser.add_argument('--pdb_dir', type=str, required=True, help='specify subdirectory containing the PDB file(s) to execute MD simulations')    
+    parser.add_argument('--pdb_dir', type=str, required=False, help='specify subdirectory containing the PDB file(s) to execute MD simulations')    
     #parser.add_argument('--dir', type=str, required=True, help='specify subdirectory to execute MD simulations (should be specified by the pbs array)' )
+    parser.add_argument('--dir', type=str, required=False, help='specify subdirectory to execute MD simulations (should be specified by the pbs array)')
     parser.add_argument('--pH', type=float, required=False, default=7.4, help='specify pH to determine protonation states of histidines with propka3')
     parser.add_argument('--p_salt', type=str, required=False, default='NA', help='specify ion to add to system (e.g., "NA+", "K+", "MG2+", "CA2+")')
     parser.add_argument('--n_salt', type=str, required=False, default='CL', help='specify ion to add to system (e.g., "CL-")')
@@ -77,14 +78,25 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
+    # Conditionally require --dir only when --analyze is used and --md is not used
+    if args.analyze and not args.md and not args.dir:
+        parser.error('--dir must be specified when using --analyze without --md')
+
     if len(sys.argv) == 1:
         parser.print_help(sys.stderr)
         sys.exit()
 
     d = '/home2/AbMelt'
     pd = args.project
-    wd = args.pdb_dir
-    mabs = args.pdb_dir
+    #wd = args.pdb_dir
+    # Use --dir if provided, otherwise fall back to --pdb_dir
+    wd = args.dir if args.dir else args.pdb_dir
+    #mabs = args.pdb_dir
+    mabs = args.pdb_dir if args.pdb_dir else wd
+
+    if wd is None:
+        print("Error: Either --dir or --pdb_dir must be specified.")
+        sys.exit(1)
 
     project_dir = os.path.join(d, 'project', pd, wd)
     if not os.path.isdir(project_dir):
@@ -339,6 +351,7 @@ if __name__ == '__main__':
                     # global features
                     gromacs.sasa(f='md_final_' + temp + '.xtc', s='md_final_' + temp + '.gro', o='sasa_' + temp + '.xvg', input=['1'])
                     gromacs.hbond(f='md_final_' + temp + '.xtc', s='md_' + temp + '.tpr', num='bonds_' + temp + '.xvg', input=['1', '1'])
+                    gromacs.hbond(f='md_final_' + temp + '.xtc', s='md_' + temp + '.tpr', n='index.ndx', num='bonds_lh_' + temp + '_contacts.xvg', input=['10', '11']) #for contacts
                     gromacs.rms(f='md_final_' + temp + '.xtc', s='md_final_' + temp + '.gro', o='rmsd_' + temp + '.xvg', input=['3', '3'])
                     gromacs.gyrate(f='md_final_' + temp + '.xtc', s='md_final_' + temp + '.gro', o='gyr_' + temp + '.xvg', n='index.ndx', input=['1'])
                     # loop features
@@ -393,7 +406,17 @@ if __name__ == '__main__':
                     raise ValueError('md_final_%s.xtc trj at %sK was not found (ensure the trjs were fixed for PBCs --fix_trj)' % (temp, temp))
             # multi-temperature features
             ## Lambda
-            order_lambda(master_dict= master_s2_dict, mab=mabs, temps=temps, block_length=block_length, start=start)
+            #order_lambda(master_dict= master_s2_dict, mab=mabs, temps=temps, block_length=block_length, start=start)
+            # Lambda: compute for multiple bias values
+            block_lengths = [2.5, 5, 10, 12.5]
+            for block_length in block_lengths:
+                order_lambda(
+                    master_dict=master_s2_dict,
+                    mab=mabs,
+                    temps=temps,
+                    block_length=block_length,
+                    start=start,
+                )
     elif args.cluster:
             avail_temps = ['300', '310', '350', '373', '400']
             temps = args.temp

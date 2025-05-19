@@ -279,7 +279,16 @@ if __name__ == '__main__':
                 raise ValueError('md_final_%s.xtc trj at %sK was not found (ensure the trjs were fixed for PBCs --fix_trj)' % (temp, temp))
         # multi-temperature features
         ## Lambda
-        order_lambda(master_dict= master_s2_dict, mab=mabs, temps=temps, block_length=block_length, start=start)
+        #order_lambda(master_dict= master_s2_dict, mab=mabs, temps=temps, block_length=block_length, start=start)
+        block_lengths = [2.5, 5, 10, 12.5]
+        for block_length in block_lengths:
+            order_lambda(
+                master_dict=master_s2_dict,
+                mab=mabs,
+                temps=temps,
+                block_length=block_length,
+                start=start,
+            )
     elif args.cluster:
         avail_temps = ['300', '310', '350', '373', '400']
         temps = args.temp

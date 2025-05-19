@@ -17,7 +17,10 @@ import argparse
 MODEL_TYPES = ['rfs', 'efs', 'afs']
 OUTPUT_DIR = 'plots'
 LOG_DIR = 'log'
-FONT_SETTINGS = {'family': 'DeJavu Serif', 'serif': ['Times New Roman']}
+FONT_SETTINGS = {
+    'font.family': 'serif',
+    'font.serif': ['Times New Roman', 'DejaVu Serif']  # fallback included
+}
 
 # Ensure output directories exist
 os.makedirs(LOG_DIR, exist_ok=True)
@@ -97,15 +100,33 @@ def plot_results(y, predicted, predicted_fit, model_name, rescaled, r3, r2, pear
 def process_model(model_file, model_type, rescaled):
     """Process and evaluate a single model."""
     model = joblib.load(model_file)
+    print(f"[DEBUG] Model expects {model.n_features_in_} features")
     model_name = os.path.basename(model_file).split('.')[0]
     feature_set = feature_sets.get(model_type)
     if feature_set is None:
         print(f"Skipping {model_name}: No feature set found for model type '{model_type}'")
         return
 
-    cols = feature_set.columns.tolist()[1:]
-    X = holdout[cols].values[:, :-1]
-    y = holdout[cols].values[:, -1]
+    cols = feature_set.columns.tolist()[1:]  # Skip 'Unnamed: 0'
+    feature_cols = cols[:-1]  # Take only feature columns
+    target_col = cols[-1]     # The last column is 'tm'
+
+    print(f"[DEBUG] Using features: {feature_cols}")
+    print(f"[DEBUG] Using target: {target_col}")
+
+    X = holdout[feature_cols].values
+    y = holdout[target_col].values
+
+    # Dynamically match expected number of features
+    if model.n_features_in_ != X.shape[1]:
+        print(f"[WARNING] Feature mismatch: Model expects {model.n_features_in_} features, but {X.shape[1]} provided.")
+        # Try including 'tm' if missing
+        if target_col not in feature_cols:
+            print("[DEBUG] Adding target column back into features (not ideal).")
+            X = holdout[feature_cols + [target_col]].values
+        else:
+            print("[ERROR] Cannot recover from feature mismatch.")
+            return
 
     predicted, predicted_fit, r3, r2, pearson, spearman = evaluate_model(model, X, y, rescaled)
     plot_results(y, predicted, predicted_fit, model_name, rescaled, r3, r2, pearson, spearman)

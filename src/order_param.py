@@ -243,3 +243,23 @@ def order_lambda(master_dict= None, mab='mab01', temps=[310, 350, 373], block_le
         lambda_dict, r_dict = get_lambda(master_dict=master_dict, temps=temps)        
         df = get_df(master_dict, lambda_dict, r_dict, temps)
         df.to_csv('order_lambda_{}block_{}start.csv'.format(block_length, start))
+
+def order_lambda(master_dict=None, mab='mab01', temps=[310, 350, 373], block_length=10, start=20000):
+    """
+    Compute lambda and r values from S2 data and save to CSV.
+    
+    Parameters:
+        master_dict (dict): Dictionary of S2 values across temperatures.
+        mab (str): Antibody ID (optional, currently unused).
+        temps (list): List of temperatures.
+        block_length (int or float): Block length in ns (used in output filename).
+        start (int): Start time in ps or ns (used in output filename).
+    """
+    temps = [int(x) for x in temps]
+
+    for temp in temps:
+        lambda_dict, r_dict = get_lambda(master_dict=master_dict, temps=temps)
+        df = get_df(master_dict, lambda_dict, r_dict, temps)
+        filename = f"order_lambda_block={block_length}_start={start}.csv"
+        df.to_csv(filename)
+        print(f"Saved: {filename}")

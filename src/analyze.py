@@ -46,6 +46,22 @@ print("Subdirectories found:", dirs)
 # Data collection dictionary
 eq_parameters = {'mAb': [], 'TEMP': [], 'metric': [], 'eq_time': [], 'eq_mu': [], 'eq_std': []}
 
+def load_xvg_data(filepath):
+    """Load .xvg file and return a NumPy array of the second column (y-values)."""
+    y_vals = []
+    with open(filepath, 'r') as f:
+        for line in f:
+            line = line.strip()
+            if line.startswith('@') or line.startswith('#') or line == '':
+                continue
+            parts = line.split()
+            if len(parts) >= 2:
+                try:
+                    y_vals.append(float(parts[1]))
+                except ValueError:
+                    continue
+    return np.array(y_vals)
+
 # Loop through directories
 for subdir in dirs:
     full_path = os.path.join(base_dir, subdir)
@@ -109,10 +125,30 @@ for subdir in dirs:
             for key, value in params.items():
                 eq_parameters[key].append(value)
 
-            y = np.array(y)
+            # Load hydrogen bond data from .xvg file
+            y = load_xvg_data('bonds_lh_400_contacts.xvg')  # <- update with your dynamic path if needed
+
+            # Handle equilibration time
+            t0 = 2000
+            if len(y) < t0:
+                print(f"⚠️ Warning: contacts data for {metric} has fewer than {t0} frames, using t0 = 0 instead")
+                t0 = 0
+
+            # Slice and compute statistics
             y_equlibrated = y[t0:]
-            y_mu, y_std = np.mean(y_equlibrated), np.std(y_equlibrated)
-            params = {'mAb': subdir.strip('./').split('/')[0], 'TEMP': temp, 'metric': metric + '_contacts', 'eq_time': 2000, 'eq_mu': y_mu, 'eq_std': y_std}
+            y_mu = np.mean(y_equlibrated)
+            y_std = np.std(y_equlibrated)
+
+            # Package results
+            params = {
+                'mAb': subdir.strip('./').split('/')[0],
+                'TEMP': temp,
+                'metric': metric + '_contacts',
+                'eq_time': t0,
+                'eq_mu': y_mu,
+                'eq_std': y_std
+            }
+
             for key, value in params.items():
                 eq_parameters[key].append(value)
 
