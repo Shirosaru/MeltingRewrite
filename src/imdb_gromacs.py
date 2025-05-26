@@ -101,8 +101,33 @@ if __name__ == '__main__':
     project_dir = os.path.join(d, 'project', pd, wd)
     if not os.path.isdir(project_dir):
         raise FileNotFoundError(f"Directory does not exist: {project_dir}")
-    
-    os.chdir(project_dir)
+
+    #try to find     
+    # Parse requested temperatures
+    temps = [t.strip() for t in args.temp.split(',')]
+
+    # Check if all requested temperatures have completed .xtc files
+    already_done = True
+    for temp in temps:
+        temp_prefix = f"{wd}_{temp}"
+        if args.time == 100:
+            xtc_file = os.path.join(project_dir, f"{temp_prefix}_md.xtc")
+        else:
+            xtc_file = os.path.join(project_dir, f"{temp_prefix}_md_{args.time}.xtc")
+        
+        if not os.path.exists(xtc_file) or os.path.getsize(xtc_file) < 100000:
+            already_done = False
+            break
+
+    # Skip full block if all simulations already done
+    if args.md and already_done and not args.force:
+        print(f"[SKIP] All requested temps already processed in {project_dir}. Skipping MD setup and simulation.")
+    else:
+        os.chdir(project_dir)
+    #        
+
+
+    #os.chdir(project_dir)
 
     if args.md:
 
@@ -151,6 +176,19 @@ if __name__ == '__main__':
 
             # Run protonation using the localized .pdb
             gromacs_input = protonation_state(pdb=local_pdb_path, path=local_pdb_path, pH=args.pH)
+
+            # Count how many HIS residues are in the PDB
+            his_count = sum(1 for line in open(pdb_path) if " HIS " in line)
+
+            # Append HIS selection (option "1" for HSE) to the gromacs_input
+            #This is neutural pH. If you want pH specificity, make this another option
+            his_input = "\n".join(["1"] * his_count)
+
+            # Combine both inputs with a newline if needed
+            if gromacs_input:
+                gromacs_input += "\n" + his_input
+            else:
+                gromacs_input = his_input
 
             # Run protonation
             #gromacs_input = protonation_state(pdb=pdb_path, path=pdb_path, pH=args.pH)
