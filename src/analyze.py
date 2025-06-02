@@ -32,6 +32,7 @@ from os.path import basename
 os.chdir('/home2/AbMelt/src')
 from res_sasa import get_core_surface
 from res_sasa import get_slope
+import subprocess
 
 # Set this to whatever top-level path you're analyzing
 base_dir = '/home2/AbMelt/project/AbMelt'
@@ -304,7 +305,12 @@ for subdir in dirs:
                         for key, value in params.items():
                             eq_parameters[key].append(value)
     os.chdir(cwd)
+    df = pd.DataFrame(eq_parameters)
+    print(df)
+    df.to_csv(os.path.join(full_path, '_abmelt_eq_20ns_parameters.csv'))
+    # Call get_features.py for the current subdir
+    subprocess.run(["python3", "/home2/AbMelt/src/get_features.py"], cwd=full_path)
 #os.chdir(cwd)
-df = pd.DataFrame(eq_parameters)
-print(df)
-df.to_csv('_abmelt_eq_20ns_parameters.csv')
+#df = pd.DataFrame(eq_parameters)
+#print(df)
+#df.to_csv('_abmelt_eq_20ns_parameters.csv')
