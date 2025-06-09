@@ -308,8 +308,16 @@ for subdir in dirs:
     df = pd.DataFrame(eq_parameters)
     print(df)
     df.to_csv(os.path.join(full_path, '_abmelt_eq_20ns_parameters.csv'))
+    df.T.to_csv(os.path.join(full_path, 'Horizontal_abmelt_eq_20ns_parameters.csv'))
+    
+    # --- Create holdout-style matrix ---
+    df_holdout = df.pivot_table(index='mAb', columns='metric', values='eq_mu')
+    # Optionally, sort the columns if desired
+    df_holdout = df_holdout.reindex(sorted(df_holdout.columns), axis=1)
+    # Save holdout-style table
+    df_holdout.to_csv(os.path.join(full_path, 'Holdout_abmelt_eq_20ns_parameters.csv'))
     # Call get_features.py for the current subdir
-    subprocess.run(["python3", "/home2/AbMelt/src/get_features.py"], cwd=full_path)
+subprocess.run(["python3", "/home2/AbMelt/src/get_features.py"], cwd=full_path)
 #os.chdir(cwd)
 #df = pd.DataFrame(eq_parameters)
 #print(df)
